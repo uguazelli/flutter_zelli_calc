@@ -17,17 +17,22 @@ class SingleKey extends StatelessWidget {
     AppStyle styles = new AppStyle(screenWidth, darkModeOn);
 
     if (stringValue == '=') {
-      return Container(
-        margin: EdgeInsets.all(3),
-        alignment: Alignment(0, 0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(100)),
-          color: styles.accentKey,
-        ),
-        child: Text(
-          stringValue,
-          style: TextStyle(
-            fontSize: styles.fontSize,
+      return InkWell(
+        onTap: () {
+          processor.process(stringValue);
+        },
+        child: Container(
+          margin: EdgeInsets.all(3),
+          alignment: Alignment(0, 0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(100)),
+            color: styles.accentKey,
+          ),
+          child: Text(
+            stringValue,
+            style: TextStyle(
+              fontSize: styles.fontSize,
+            ),
           ),
         ),
       );

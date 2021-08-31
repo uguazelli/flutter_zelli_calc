@@ -3,8 +3,11 @@ import 'package:get/get.dart';
 class CalcController extends GetxController {
   CalcController();
   var _memory = '';
+  bool _reset = false;
   var _operator = ''.obs;
   var _display = '0'.obs;
+  set reset(value) => this._reset = value;
+  get reset => this._reset;
   set memory(value) => this._memory = value;
   get memory => this._memory;
   set operator(value) => this._operator.value = value;
@@ -22,8 +25,7 @@ class CalcController extends GetxController {
         setSign();
         break;
 
-      case '%':
-        //TODO implement
+      case '%': //TODO implement
         break;
 
       case '.':
@@ -34,8 +36,10 @@ class CalcController extends GetxController {
       case '-':
       case 'x':
       case '÷':
+      case '=':
         setOperation(pressedKey);
         break;
+
       case '0':
       case '1':
       case '2':
@@ -48,6 +52,7 @@ class CalcController extends GetxController {
       case '9':
         setDigit(pressedKey);
         break;
+
       default:
         display = 'ERROR';
     }
@@ -67,8 +72,13 @@ class CalcController extends GetxController {
         display = display + digit;
       }
     } else {
-      memory = display;
-      display = digit;
+      if (reset) {
+        memory = display;
+        display = digit;
+        reset = false;
+      } else {
+        display = display + digit;
+      }
     }
   }
 
@@ -84,36 +94,13 @@ class CalcController extends GetxController {
 
   void setOperation(digit) {
     if (operator == '') {
+      reset = true;
       operator = digit;
     } else {
-      switch (operator) {
-        case '+':
-          break;
-        case '-':
-          break;
-        case 'x':
-          break;
-        case '÷':
-          break;
-        default:
-          display = 'ERROR';
-      }
       display = calculate(memory, display, operator);
       operator = digit;
       memory = '';
     }
-
-    //String operator = display.substring(display.length - 1);
-    //bool hasOperator = ['+', '-', 'x', '÷'].contains(digit);
-    ////var hasOperator = RegExp(r"[\+\-x\÷]").hasMatch(display);
-    //if (hasOperator) {
-    //  operator = digit;
-    //  print(operator);
-    //  //display = display.substring(0, display.length - 2) + ' ' + digit;
-    //} else {
-    //  //display = display + ' ' + digit;
-    //  operator = digit;
-    //}
   }
 
   void setSign() {
@@ -132,6 +119,11 @@ class CalcController extends GetxController {
     if (operatorion == '-') result = (a - b).toString();
     if (operatorion == 'x') result = (a * b).toString();
     if (operatorion == '÷') result = (a / b).toString();
+    if (operatorion == '=') {
+      if (result == 'ERROR') result = display;
+      operatorion = '';
+      memory = '';
+    }
     return result;
   }
 }
