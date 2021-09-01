@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zelli_calc/screen/simple_calc.dart';
+import 'package:zelli_calc/screen/temp_conversion.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +18,12 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.blue,
         ),
       ),
-      home: SimpleCalc(),
+      initialRoute: '/simplecalc',
+      routes: {
+        '/simplecalc': (context) => SimpleCalc(),
+        '/tempconversion': (context) => TempConversion(),
+      },
+      //home: SimpleCalc(),
     );
   }
 }

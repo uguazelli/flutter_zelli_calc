@@ -15,7 +15,7 @@ class SimpleCalc extends StatelessWidget {
     AppStyle styles = new AppStyle(screenWidth, darkModeOn);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Simple Calc'),
+        title: Text('Calculator'),
       ),
       drawer: DrawerMenu(),
       body: Center(

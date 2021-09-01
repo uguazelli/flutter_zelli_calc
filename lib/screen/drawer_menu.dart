@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:zelli_calc/screen/simple_calc.dart';
 
 class DrawerMenu extends StatelessWidget {
   const DrawerMenu({Key? key}) : super(key: key);
@@ -18,15 +17,12 @@ class DrawerMenu extends StatelessWidget {
             child: Text('Drawer Header'),
           ),
           ListTile(
-            title: const Text('Simple Calc'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SimpleCalc()),
-            ),
+            title: const Text('Calculator'),
+            onTap: () => Navigator.pushNamed(context, '/simplecalc'),
           ),
           ListTile(
-            title: const Text('Item 2'),
-            onTap: () {},
+            title: const Text('Temperature Conversion'),
+            onTap: () => Navigator.pushNamed(context, '/tempconversion'),
           ),
         ],
       ),

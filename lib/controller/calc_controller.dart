@@ -2,18 +2,22 @@ import 'package:get/get.dart';
 
 class CalcController extends GetxController {
   CalcController();
-  var _memory = '';
   bool _reset = false;
+  var _memory = '';
   var _operator = ''.obs;
   var _display = '0'.obs;
-  set reset(value) => this._reset = value;
+
   get reset => this._reset;
-  set memory(value) => this._memory = value;
+  set reset(value) => this._reset = value;
+
   get memory => this._memory;
-  set operator(value) => this._operator.value = value;
+  set memory(value) => this._memory = value;
+
   get operator => this._operator.value;
-  set display(value) => this._display.value = value;
+  set operator(value) => this._operator.value = value;
+
   get display => this._display.value;
+  set display(value) => this._display.value = value;
 
   void process(pressedKey) {
     switch (pressedKey) {
@@ -25,7 +29,8 @@ class CalcController extends GetxController {
         setSign();
         break;
 
-      case '%': //TODO implement
+      case '%':
+        perCente();
         break;
 
       case '.':
@@ -109,6 +114,12 @@ class CalcController extends GetxController {
     } else {
       display = '-' + display;
     }
+  }
+
+  void perCente() {
+    double num = double.parse(display);
+    double perCent = num / 100;
+    display = perCent.toString();
   }
 
   String calculate(String num1, String num2, String operatorion) {
