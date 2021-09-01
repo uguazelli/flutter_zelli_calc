@@ -93,14 +93,14 @@ class CalcController extends GetxController {
   }
 
   void setOperation(digit) {
-    if (operator == '') {
-      reset = true;
+    if (memory == '') {
       operator = digit;
     } else {
       display = calculate(memory, display, operator);
       operator = digit;
       memory = '';
     }
+    reset = true;
   }
 
   void setSign() {
@@ -121,8 +121,6 @@ class CalcController extends GetxController {
     if (operatorion == '÷') result = (a / b).toString();
     if (operatorion == '=') {
       if (result == 'ERROR') result = display;
-      operatorion = '';
-      memory = '';
     }
     return result;
   }
