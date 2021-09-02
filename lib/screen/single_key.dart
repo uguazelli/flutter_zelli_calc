@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zelli_calc/controller/app_styles.dart';
-import 'package:zelli_calc/controller/calc_controller.dart';
+//import 'package:zelli_calc/controller/calc_controller.dart';
 
 class SingleKey extends StatelessWidget {
   String stringValue = '';
-  CalcController processor;
+  var processor;
   SingleKey(this.stringValue, this.processor);
 
   final List<String> specialKeys = ['+', '-', 'x', '÷', 'C', '±', '%'];
@@ -34,6 +34,14 @@ class SingleKey extends StatelessWidget {
               fontSize: styles.fontSize,
             ),
           ),
+        ),
+      );
+    } else if (stringValue == '') {
+      return InkWell(
+        child: Container(
+          margin: EdgeInsets.all(3),
+          alignment: Alignment(0, 0),
+          color: Color(0xFF0E3311).withOpacity(0),
         ),
       );
     } else {
