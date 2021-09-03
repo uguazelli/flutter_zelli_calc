@@ -18,12 +18,11 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.blue,
         ),
       ),
-      initialRoute: '/tempconversion',
+      initialRoute: '/simplecalc',
       routes: {
         '/simplecalc': (context) => SimpleCalc(),
         '/tempconversion': (context) => TempConversion(),
       },
-      //home: SimpleCalc(),
     );
   }
 }

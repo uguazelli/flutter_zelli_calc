@@ -26,28 +26,16 @@ class TempConversion extends StatelessWidget {
             maxHeight: styles.maxHeight,
             maxWidth: styles.maxWidth,
           ),
-          margin: EdgeInsets.all(15),
+          margin: EdgeInsets.all(50),
           child: Column(
             children: [
               Expanded(
                 flex: 2,
-                child: Container(
-                  alignment: Alignment(0.85, 0.5),
-                  child: Text(
-                    "DISPLAY1",
-                    style: TextStyle(fontSize: 40),
-                  ),
-                ),
+                child: Display('display1'),
               ),
               Expanded(
                 flex: 2,
-                child: Container(
-                  alignment: Alignment(0.85, 0.5),
-                  child: Text(
-                    "DISPLAY2",
-                    style: TextStyle(fontSize: 40),
-                  ),
-                ),
+                child: Display('display2'),
               ),
               Expanded(
                 flex: 2,
@@ -102,6 +90,41 @@ class TempConversion extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  InkWell Display(display) {
+    return InkWell(
+      onTap: () => tempCtrl.setActiveDisplay(display),
+      child: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: Container(
+              alignment: Alignment(-0.85, 0),
+              child: Text(
+                display == 'display1' ? '°C' : '°F',
+                style: TextStyle(fontSize: 40),
+              ),
+            ),
+          ),
+          Expanded(
+            flex: 5,
+            child: Obx(() => Container(
+                  alignment: Alignment(-0.85, 0),
+                  color: tempCtrl.operator == display
+                      ? Colors.grey[900]
+                      : Color(0xFF0E3311).withOpacity(0),
+                  child: Text(
+                    display == 'display1'
+                        ? tempCtrl.display1
+                        : tempCtrl.display2,
+                    style: TextStyle(fontSize: 40),
+                  ),
+                )),
+          ),
+        ],
       ),
     );
   }
